@@ -13,6 +13,8 @@ The application implements an event-driven order processing workflow using the f
 - **Step Functions** - `OrderWorkflow` state machine orchestrating processing, receipt generation, and notification
 - **S3** - Receipt storage
 - **SNS** - Order status notifications
+- **SSM Parameter Store** - Application configuration parameters
+- **Secrets Manager** - Secure storage for API keys and credentials
 
 ### Request Flow
 
@@ -79,8 +81,10 @@ This starts all services locally (API Gateway, DynamoDB, SQS, S3, SNS, Step Func
 | Queue         | order-queue        | Order processing queue          |
 | Queue         | order-dlq          | Dead letter queue               |
 | Bucket        | ReceiptsBucket     | Receipt storage                 |
-| Topic         | order-notifications| Order status notifications      |
-| State Machine | OrderWorkflow      | Order processing workflow       |
+| Topic         | order-notifications         | Order status notifications        |
+| Parameter     | /orders/config/max-items    | Max items per order config        |
+| Secret        | orders/notification-api-key | Notification API key              |
+| State Machine | OrderWorkflow               | Order processing workflow         |
 
 ## Running Tests
 
